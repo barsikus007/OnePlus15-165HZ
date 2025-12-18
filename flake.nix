@@ -1,5 +1,5 @@
 {
-  description = "KernelSU/Apatch/Magisk WebUI Module Template";
+  description = "OnePlus15-165HZ Module";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";

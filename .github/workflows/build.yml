@@ -1,4 +1,4 @@
-name: Build KernelSU/Apatch/Magisk Module
+name: Build OnePlus15-165HZ Module
 
 on:
   workflow_dispatch:

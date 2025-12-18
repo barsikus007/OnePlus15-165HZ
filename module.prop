@@ -1,7 +1,7 @@
-id=ksu-webui-module-template
-name=KernelSU/Apatch/Magisk WebUI Module Template
-version=v1.0.0
-versionCode=1
-author=barsikus007
-description=A template for creating KernelSU/Apatch/Magisk modules with WebUI
-updateJson=https://github.com/barsikus007/ksu-webui-module-template/releases/latest/download/update.json
+id=OnePlus15-165HZ
+name=OnePlus 15 with 165Hz
+version=v16.0.2.401.0
+versionCode=16024010
+author=天伞桜 & barsikus007
+description=Enables permanent 165Hz refresh rate in every app on OnePlus 15 devices. Compatible (tested) with OnePlus 15 running OxygenOS 16
+updateJson=https://github.com/barsikus007/OnePlus15-165HZ/releases/latest/download/update.json
