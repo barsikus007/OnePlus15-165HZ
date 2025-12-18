@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample WebUI</title>
+  <!-- Window Safe Area Insets -->
+  <link rel="stylesheet" type="text/css" href="https://mui.kernelsu.org/internal/insets.css" />
+  <!-- App Theme which the user has currently selected -->
+  <link rel="stylesheet" type="text/css" href="https://mui.kernelsu.org/internal/colors.css" />
+  <!-- Your styles -->
+  <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+  <style>
+    body {
+      padding-top: var(--window-inset-top);
+      padding-bottom: var(--window-inset-bottom);
+      background-color: var(--background);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      padding: 16px;
+      background-color: var(--surfaceContainer);
+      border-radius: 20px;
+    }
+
+    * {
+      color: var(--inverseSurface);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0 0 8px 0;
+      padding: 0;
+    }
+  </style>
+  <!-- <script src="index.js"></script> -->
+  <script>
+    // TODO: somehow load it from filesystem
+    const moduleId = "ksu-webui-module-template";
+    document.addEventListener("DOMContentLoaded", function () {
+      const deviceName = ksu.exec("getprop ro.product.model");
+    });
+    const isParamExist = (paramPath, param) => {
+      return !!+ksu.exec(`[ -f ${paramPath}/${param} ] && echo 1 || echo 0`);
+    };
+    const getParam = (paramPath, param) => {
+      return ksu.exec(`cat ${paramPath}/${param}`);
+    };
+    const setParam = (paramPath, param, value) => {
+      ksu.exec(`echo ${value} > ${paramPath}/${param}`);
+    };
+    const getModuleInfo = (param) => {
+      return ksu.exec(`grep '${param}=' '/data/adb/modules/${moduleId}/module.prop' | sed 's/${param}=//g'`);
+    };
+    const getHeaderText = () => {
+      return `${getModuleInfo("name")} ${getModuleInfo("version")}`;
+    };
+    const getBright = () => {
+      return +getParam("/sys/class/backlight/panel0-backlight", "brightness");
+    };
+    // setTimeout(() => {
+    //   ksu.toast("forced reloaded " + Date.now());
+    //   window.location.reload();
+    // }, 2000);
+    ksu.toast("page loaded " + Date.now());
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <span>modulename moduleversion</span>
+  </header>
+  <div class="card">
+    <h3>Device Info:</h3>
+    <span id="deviceName"></span>
+  </div>
+
+  <div class="card" onclick="window.location.reload();">
+    <h4>force reload</h4>
+  </div>
+
+</body>
+
+</html>
